@@ -12,6 +12,30 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+#
+  build-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Build the HTML documentation
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@v1.1.0
+        with:
+          doxyfile-path: ./Doxyfile
+          working-directory: .
+
+      # Deploy the HTML documentation to GitHub Pages
+      - name: GH Pages Deployment
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc/html/
+          enable_jekyll: false
+          allow_empty_commit: false
+          force_orphan: true
+          publish_branch: gh-pages
   # This workflow contains a single job called "build"
   checks:
     # The type of runner that the job will run on
@@ -36,8 +60,6 @@ jobs:
       - name: prepare environment
         run:  sudo apt install git &&
           git submodule update --init
-      - name: Doxygen Action
-        uses: mattnotmitt/doxygen-action@v1.3.0
 
       - name: tests
         run:
