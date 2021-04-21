@@ -15,7 +15,7 @@ jobs:
   #This workflow is needed for updating Doxygen on github-pages
   doc:
     runs-on: ubuntu-latest
-      timeout-minutes: 1
+      timeout-minutes: 25
 
       # Steps represent a sequence of tasks that will be executed as part of the job
       steps:
