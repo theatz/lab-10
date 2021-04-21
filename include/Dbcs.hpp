@@ -35,6 +35,11 @@ class Dbcs{
    */
    void ReadFromDataBase();
 
+   /*
+    * @brief void to create new key-hash entry in multiple threads
+    */
+   void AddNewKeyHashEntry();
+
  private:
   ThreadPool _threadPool;
 //  rocksdb::DB** _db;
