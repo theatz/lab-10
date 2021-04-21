@@ -12,6 +12,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  #This workflow is needed for updating Doxygen on github-pages
+  doc:
+    runs-on: ubuntu-latest
+      timeout-minutes: 1
+
+      # Steps represent a sequence of tasks that will be executed as part of the job
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v2
+        - name: prepare environment
+          run: sudo apt install git && sudo apt install doxygen&&
+            git submodule update --init
+
+        - name: checks
+          run:
+            docker run -v `pwd`:`pwd` -w `pwd` scripts/Doxygen.sh
+
   # This workflow contains a single job called "build"
   checks:
     # The type of runner that the job will run on
