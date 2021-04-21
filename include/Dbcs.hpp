@@ -41,7 +41,7 @@ class Dbcs{
    void AddNewKeyHashEntry();
 
    /*
-    * @brief cgcejewjl
+    * @brief cgcejewjlwd
     */
    void check();
 
