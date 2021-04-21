@@ -57,3 +57,6 @@ jobs:
           asset_path: _artifacts/${{ steps.build_packages.outputs.rpm_package_filename }}
           asset_name: ${{ steps.build_packages.outputs.rpm_package_filename }}
           asset_content_type: application/zip
+
+        - name: Doxygen Action
+          uses: mattnotmitt/doxygen-action@v1.3.0
