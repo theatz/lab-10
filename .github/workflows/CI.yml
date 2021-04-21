@@ -36,6 +36,8 @@ jobs:
       - name: prepare environment
         run:  sudo apt install git &&
           git submodule update --init
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@v1.3.0
 
       - name: tests
         run:
