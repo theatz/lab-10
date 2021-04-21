@@ -40,6 +40,11 @@ class Dbcs{
     */
    void AddNewKeyHashEntry();
 
+   /*
+    * @brief cgcejewjl
+    */
+   void check();
+
  private:
   ThreadPool _threadPool;
 //  rocksdb::DB** _db;
