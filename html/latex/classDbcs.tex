@@ -1,0 +1,62 @@
+\hypertarget{classDbcs}{}\doxysection{Dbcs Class Reference}
+\label{classDbcs}\index{Dbcs@{Dbcs}}
+
+
+Class to operate with existed ( created by time ) rocksdb Data\+Base.  
+
+
+
+
+{\ttfamily \#include $<$Dbcs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDbcs_a0e771adcff8e6cdd3b2ca4008cb3441b}{Dbcs}} (std\+::string \&log\+\_\+level, uint32\+\_\+t \&thread\+\_\+count, std\+::string \&output)
+\item 
+\mbox{\Hypertarget{classDbcs_af1def2667b8f3542cd8725829cdc4f48}\label{classDbcs_af1def2667b8f3542cd8725829cdc4f48}} 
+void \mbox{\hyperlink{classDbcs_af1def2667b8f3542cd8725829cdc4f48}{Create\+Test\+Data\+Base}} ()
+\begin{DoxyCompactList}\small\item\em void to create test db with random key-\/value pairs \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDbcs_a0b385fc50e7319ef51fc3e7f1d18d5ed}\label{classDbcs_a0b385fc50e7319ef51fc3e7f1d18d5ed}} 
+void \mbox{\hyperlink{classDbcs_a0b385fc50e7319ef51fc3e7f1d18d5ed}{Read\+From\+Data\+Base}} ()
+\begin{DoxyCompactList}\small\item\em void to read from db in multiple threads \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to operate with existed ( created by time ) rocksdb Data\+Base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+\_\+level} & Log level to Boost\+\_\+log \\
+\hline
+{\em thread\+\_\+count} & Quantity of threads to operate with db \\
+\hline
+{\em output} & Link to output file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDbcs_a0e771adcff8e6cdd3b2ca4008cb3441b}\label{classDbcs_a0e771adcff8e6cdd3b2ca4008cb3441b}} 
+\index{Dbcs@{Dbcs}!Dbcs@{Dbcs}}
+\index{Dbcs@{Dbcs}!Dbcs@{Dbcs}}
+\doxysubsubsection{\texorpdfstring{Dbcs()}{Dbcs()}}
+{\footnotesize\ttfamily Dbcs\+::\+Dbcs (\begin{DoxyParamCaption}\item[{std\+::string \&}]{log\+\_\+level,  }\item[{uint32\+\_\+t \&}]{thread\+\_\+count,  }\item[{std\+::string \&}]{output }\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]operation with \mbox{\hyperlink{classThreadPool}{Thread\+Pool}} \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em log\+\_\+level} & \\
+\hline
+{\em thread\+\_\+count} & \\
+\hline
+{\em output} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Dbcs.\+hpp\item 
+sources/Dbcs.\+cpp\end{DoxyCompactItemize}
