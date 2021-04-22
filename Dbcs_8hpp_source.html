@@ -91,27 +91,20 @@ $(function() {
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">   32</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">CreateTestDataBase</a>();</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">   36</a></span>&#160;   <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">ReadFromDataBase</a>();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;   <span class="comment">/*</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">    * @brief void to create new key-hash entry in multiple threads</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;   <span class="keywordtype">void</span> AddNewKeyHashEntry();</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">   41</a></span>&#160;   <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">AddNewKeyHashEntry</a>();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;   <span class="comment">/*</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">    * @brief cgcejewjlwd</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;   <span class="keywordtype">void</span> check();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="classThreadPool.html">ThreadPool</a> _threadPool;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//  rocksdb::DB** _db;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//  std::string _kDBPath;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classThreadPool.html">ThreadPool</a> _threadPool;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//  rocksdb::DB** _db;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//  std::string _kDBPath;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TEMPLATE_DBCS_HPP</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TEMPLATE_DBCS_HPP</span></div>
 <div class="ttc" id="aclassDbcs_html"><div class="ttname"><a href="classDbcs.html">Dbcs</a></div><div class="ttdoc">Class to operate with existed ( created by time ) rocksdb DataBase.</div><div class="ttdef"><b>Definition:</b> Dbcs.hpp:26</div></div>
 <div class="ttc" id="aclassDbcs_html_a0b385fc50e7319ef51fc3e7f1d18d5ed"><div class="ttname"><a href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">Dbcs::ReadFromDataBase</a></div><div class="ttdeci">void ReadFromDataBase()</div><div class="ttdoc">void to read from db in multiple threads</div></div>
 <div class="ttc" id="aclassDbcs_html_a0e771adcff8e6cdd3b2ca4008cb3441b"><div class="ttname"><a href="classDbcs.html#a0e771adcff8e6cdd3b2ca4008cb3441b">Dbcs::Dbcs</a></div><div class="ttdeci">Dbcs(std::string &amp;log_level, uint32_t &amp;thread_count, std::string &amp;output)</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:23</div></div>
+<div class="ttc" id="aclassDbcs_html_aec92ade834288c62d9ca83df1b00a7a9"><div class="ttname"><a href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">Dbcs::AddNewKeyHashEntry</a></div><div class="ttdeci">void AddNewKeyHashEntry()</div><div class="ttdoc">void to create new key-hash entry in multiple threads</div></div>
 <div class="ttc" id="aclassDbcs_html_af1def2667b8f3542cd8725829cdc4f48"><div class="ttname"><a href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">Dbcs::CreateTestDataBase</a></div><div class="ttdeci">void CreateTestDataBase()</div><div class="ttdoc">void to create test db with random key-value pairs</div></div>
 <div class="ttc" id="aclassThreadPool_html"><div class="ttname"><a href="classThreadPool.html">ThreadPool</a></div><div class="ttdef"><b>Definition:</b> ThreadPool.hpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['createtestdatabase_0',['CreateTestDataBase',['../classDbcs.html#af1def2667b8f3542cd8725829cdc4f48',1,'Dbcs']]]
+  ['addnewkeyhashentry_0',['AddNewKeyHashEntry',['../classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9',1,'Dbcs']]]
 ];
