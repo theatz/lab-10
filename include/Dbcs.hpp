@@ -35,15 +35,10 @@ class Dbcs{
    */
    void ReadFromDataBase();
 
-   /*
+   /**
     * @brief void to create new key-hash entry in multiple threads
     */
    void AddNewKeyHashEntry();
-
-   /*
-    * @brief cgcejewjlwd
-    */
-   void check();
 
  private:
   ThreadPool _threadPool;
