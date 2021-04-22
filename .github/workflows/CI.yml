@@ -28,7 +28,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./public
+            publish_dir: ./docs/html
   # This workflow contains a single job called "build"
   checks:
     # The type of runner that the job will run on
