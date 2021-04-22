@@ -22,8 +22,12 @@ jobs:
       # Build the HTML documentation
       - name: Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.3.0
-
-      # Deploy the HTML documentation to GitHub Pages
+      - name: GH Pages Deployment
+        uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./docs/html
+            # Deploy the HTML documentation to GitHub Pages
 
   # This workflow contains a single job called "build"
   checks:
