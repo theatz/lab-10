@@ -14,22 +14,27 @@
 
 #ifndef TEMPLATE_THREADPOOL_HPP
 #define TEMPLATE_THREADPOOL_HPP
+
 class ThreadPool {
  public:
   ThreadPool(size_t);
-  template<class Task>
-  void enqueue(Task&& task);
-//  void Stop();
+  template<class F, class... Args>
+  auto enqueue(F&& f, Args&&... args)
+  -> std::future<typename std::result_of<F(Args...)>::type>;
   ~ThreadPool();
  private:
+  // need to keep track of threads so we can join them
   std::vector< std::thread > workers;
+  // the task queue
   std::queue< std::function<void()> > tasks;
 
+  // synchronization
   std::mutex queue_mutex;
   std::condition_variable condition;
   bool stop;
 };
 
+// the constructor just launches some amount of workers
 inline ThreadPool::ThreadPool(size_t threads)
     :   stop(false)
 {
@@ -57,9 +62,18 @@ inline ThreadPool::ThreadPool(size_t threads)
     );
 }
 
-template<class Task>
-void ThreadPool::enqueue(Task&& worker_task)
+// add new work item to the pool
+template<class F, class... Args>
+auto ThreadPool::enqueue(F&& f, Args&&... args)
+-> std::future<typename std::result_of<F(Args...)>::type>
 {
+  using return_type = typename std::result_of<F(Args...)>::type;
+
+  auto task = std::make_shared< std::packaged_task<return_type()> >(
+      std::bind(std::forward<F>(f), std::forward<Args>(args)...)
+  );
+
+  std::future<return_type> res = task->get_future();
   {
     std::unique_lock<std::mutex> lock(queue_mutex);
 
@@ -67,12 +81,14 @@ void ThreadPool::enqueue(Task&& worker_task)
     if(stop)
       throw std::runtime_error("enqueue on stopped ThreadPool");
 
-    tasks.emplace([worker_task] { (worker_task)(); });
+    tasks.emplace([task](){ (*task)(); });
   }
   condition.notify_one();
+  return res;
 }
 
-ThreadPool::~ThreadPool()
+// the destructor joins all threads
+inline ThreadPool::~ThreadPool()
 {
   {
     std::unique_lock<std::mutex> lock(queue_mutex);
@@ -82,6 +98,5 @@ ThreadPool::~ThreadPool()
   for(std::thread &worker: workers)
     worker.join();
 }
-
 
 #endif  // TEMPLATE_THREADPOOL_HPP
