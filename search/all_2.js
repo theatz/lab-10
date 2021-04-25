@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dbcs_2',['Dbcs',['../classDbcs.html',1,'Dbcs'],['../classDbcs.html#a0e771adcff8e6cdd3b2ca4008cb3441b',1,'Dbcs::Dbcs()']]]
+  ['dbcs_2',['Dbcs',['../classDbcs.html',1,'Dbcs'],['../classDbcs.html#adb748ec96ecbf15104c3c64ba35da74d',1,'Dbcs::Dbcs()']]]
 ];

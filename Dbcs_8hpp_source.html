@@ -77,36 +77,62 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;rocksdb/db.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;rocksdb/options.h&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;rocksdb/slice.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;PicoSHA.hpp&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;ThreadPool.hpp&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef TEMPLATE_DBCS_HPP</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define TEMPLATE_DBCS_HPP</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classDbcs.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDbcs.html">Dbcs</a>{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <a class="code" href="classDbcs.html#a0e771adcff8e6cdd3b2ca4008cb3441b">Dbcs</a>(std::string&amp; log_level, uint32_t&amp; thread_count, std::string&amp; output);</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">   32</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">CreateTestDataBase</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">   36</a></span>&#160;   <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">ReadFromDataBase</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">   41</a></span>&#160;   <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">AddNewKeyHashEntry</a>();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;boost/log/common.hpp&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;boost/log/expressions.hpp&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;boost/log/sinks.hpp&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;boost/log/sources/logger.hpp&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/log/core.hpp&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;boost/log/trivial.hpp&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;boost/log/sinks/text_file_backend.hpp&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;boost/log/utility/setup/common_attributes.hpp&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;boost/log/sources/severity_logger.hpp&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;boost/log/sources/record_ostream.hpp&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;boost/log/utility/setup/console.hpp&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;boost/log/expressions/keyword.hpp&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;PicoSHA.hpp&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;ThreadPool.hpp&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifndef TEMPLATE_DBCS_HPP</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define TEMPLATE_DBCS_HPP</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structKeyValuePair.html">   38</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structKeyValuePair.html">KeyValuePair</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  rocksdb::Slice key;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  rocksdb::Slice value;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="classThreadPool.html">ThreadPool</a> _threadPool;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//  rocksdb::DB** _db;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//  std::string _kDBPath;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TEMPLATE_DBCS_HPP</span></div>
-<div class="ttc" id="aclassDbcs_html"><div class="ttname"><a href="classDbcs.html">Dbcs</a></div><div class="ttdoc">Class to operate with existed ( created by time ) rocksdb DataBase.</div><div class="ttdef"><b>Definition:</b> Dbcs.hpp:26</div></div>
-<div class="ttc" id="aclassDbcs_html_a0b385fc50e7319ef51fc3e7f1d18d5ed"><div class="ttname"><a href="classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed">Dbcs::ReadFromDataBase</a></div><div class="ttdeci">void ReadFromDataBase()</div><div class="ttdoc">void to read from db in multiple threads</div></div>
-<div class="ttc" id="aclassDbcs_html_a0e771adcff8e6cdd3b2ca4008cb3441b"><div class="ttname"><a href="classDbcs.html#a0e771adcff8e6cdd3b2ca4008cb3441b">Dbcs::Dbcs</a></div><div class="ttdeci">Dbcs(std::string &amp;log_level, uint32_t &amp;thread_count, std::string &amp;output)</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:23</div></div>
-<div class="ttc" id="aclassDbcs_html_aec92ade834288c62d9ca83df1b00a7a9"><div class="ttname"><a href="classDbcs.html#aec92ade834288c62d9ca83df1b00a7a9">Dbcs::AddNewKeyHashEntry</a></div><div class="ttdeci">void AddNewKeyHashEntry()</div><div class="ttdoc">void to create new key-hash entry in multiple threads</div></div>
-<div class="ttc" id="aclassDbcs_html_af1def2667b8f3542cd8725829cdc4f48"><div class="ttname"><a href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">Dbcs::CreateTestDataBase</a></div><div class="ttdeci">void CreateTestDataBase()</div><div class="ttdoc">void to create test db with random key-value pairs</div></div>
-<div class="ttc" id="aclassThreadPool_html"><div class="ttname"><a href="classThreadPool.html">ThreadPool</a></div><div class="ttdef"><b>Definition:</b> ThreadPool.hpp:17</div></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classDbcs.html">   54</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDbcs.html">Dbcs</a> {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="classDbcs.html#adb748ec96ecbf15104c3c64ba35da74d">Dbcs</a>(std::string&amp; log_level, uint32_t&amp; thread_count, std::string&amp; output,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;       std::string&amp; input);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">CreateTestDataBase</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#ad60b5925f2884555457d3a02d8e10150">ReadFromDataBaseSync</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#a2bf0aed8cd04d26ed1b86afaa95d7241">AddNewKeyHashEntry</a>(<a class="code" href="structKeyValuePair.html">KeyValuePair</a>&amp; pair);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d">EnableLogging</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <a class="code" href="classThreadPool.html">ThreadPool</a> _threadPool;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  rocksdb::DB* _dbRead;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  rocksdb::DB* _dbWrite;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="comment">//  std::string _kDBPath;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TEMPLATE_DBCS_HPP</span></div>
+<div class="ttc" id="aclassDbcs_html"><div class="ttname"><a href="classDbcs.html">Dbcs</a></div><div class="ttdoc">Class to operate with existed ( created by time ) rocksdb DataBase.</div><div class="ttdef"><b>Definition:</b> Dbcs.hpp:54</div></div>
+<div class="ttc" id="aclassDbcs_html_a2bf0aed8cd04d26ed1b86afaa95d7241"><div class="ttname"><a href="classDbcs.html#a2bf0aed8cd04d26ed1b86afaa95d7241">Dbcs::AddNewKeyHashEntry</a></div><div class="ttdeci">void AddNewKeyHashEntry(KeyValuePair &amp;pair)</div><div class="ttdoc">void to create new key-hash entry in multiple threads</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:67</div></div>
+<div class="ttc" id="aclassDbcs_html_a8922e778ffcfc9afc439cd9e6675fe7d"><div class="ttname"><a href="classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d">Dbcs::EnableLogging</a></div><div class="ttdeci">void EnableLogging()</div><div class="ttdoc">void to enable logging via Boost::Log</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:80</div></div>
+<div class="ttc" id="aclassDbcs_html_ad60b5925f2884555457d3a02d8e10150"><div class="ttname"><a href="classDbcs.html#ad60b5925f2884555457d3a02d8e10150">Dbcs::ReadFromDataBaseSync</a></div><div class="ttdeci">void ReadFromDataBaseSync()</div><div class="ttdoc">void to read from db in one threads</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:57</div></div>
+<div class="ttc" id="aclassDbcs_html_adb748ec96ecbf15104c3c64ba35da74d"><div class="ttname"><a href="classDbcs.html#adb748ec96ecbf15104c3c64ba35da74d">Dbcs::Dbcs</a></div><div class="ttdeci">Dbcs(std::string &amp;log_level, uint32_t &amp;thread_count, std::string &amp;output, std::string &amp;input)</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:23</div></div>
+<div class="ttc" id="aclassDbcs_html_af1def2667b8f3542cd8725829cdc4f48"><div class="ttname"><a href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">Dbcs::CreateTestDataBase</a></div><div class="ttdeci">void CreateTestDataBase()</div><div class="ttdoc">void to create test db with random key-value pairs</div><div class="ttdef"><b>Definition:</b> Dbcs.cpp:46</div></div>
+<div class="ttc" id="aclassThreadPool_html"><div class="ttname"><a href="classThreadPool.html">ThreadPool</a></div><div class="ttdef"><b>Definition:</b> ThreadPool.hpp:18</div></div>
+<div class="ttc" id="astructKeyValuePair_html"><div class="ttname"><a href="structKeyValuePair.html">KeyValuePair</a></div><div class="ttdoc">Struct to forward key-value pairs to consumer.</div><div class="ttdef"><b>Definition:</b> Dbcs.hpp:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

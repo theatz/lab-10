@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readfromdatabase_13',['ReadFromDataBase',['../classDbcs.html#a0b385fc50e7319ef51fc3e7f1d18d5ed',1,'Dbcs']]]
+  ['enablelogging_16',['EnableLogging',['../classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d',1,'Dbcs']]]
 ];

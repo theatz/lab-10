@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hash256_5fone_5fby_5fone_3',['hash256_one_by_one',['../classpicosha2_1_1hash256__one__by__one.html',1,'picosha2']]]
+  ['enablelogging_3',['EnableLogging',['../classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d',1,'Dbcs']]]
 ];

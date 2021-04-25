@@ -75,10 +75,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac291710e33dbbed96ee20711080d506d"><td class="memItemLeft" align="right" valign="top"><a id="ac291710e33dbbed96ee20711080d506d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ThreadPool</b> (size_t)</td></tr>
 <tr class="separator:ac291710e33dbbed96ee20711080d506d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69ce191db02cd5b96fcb67dd5585e306"><td class="memTemplParams" colspan="2"><a id="a69ce191db02cd5b96fcb67dd5585e306"></a>
-template&lt;class Task &gt; </td></tr>
-<tr class="memitem:a69ce191db02cd5b96fcb67dd5585e306"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>enqueue</b> (Task &amp;&amp;task)</td></tr>
-<tr class="separator:a69ce191db02cd5b96fcb67dd5585e306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f628893c030552d9714c25f68656adc"><td class="memTemplParams" colspan="2"><a id="a8f628893c030552d9714c25f68656adc"></a>
+template&lt;class F , class... Args&gt; </td></tr>
+<tr class="memitem:a8f628893c030552d9714c25f68656adc"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>enqueue</b> (F &amp;&amp;f, Args &amp;&amp;... args) -&gt; std::future&lt; typename std::result_of&lt; F(Args...)&gt;::type &gt;</td></tr>
+<tr class="separator:a8f628893c030552d9714c25f68656adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="ThreadPool_8hpp_source.html">ThreadPool.hpp</a></li>

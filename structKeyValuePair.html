@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RocksDb reader: Class Members</title>
+<title>RocksDb reader: KeyValuePair Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -46,7 +46,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,23 +60,41 @@ $(function() {
 </iframe>
 </div>
 
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structKeyValuePair-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">KeyValuePair Struct Reference</div>  </div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div><ul>
-<li>AddNewKeyHashEntry()
-: <a class="el" href="classDbcs.html#a2bf0aed8cd04d26ed1b86afaa95d7241">Dbcs</a>
-</li>
-<li>CreateTestDataBase()
-: <a class="el" href="classDbcs.html#af1def2667b8f3542cd8725829cdc4f48">Dbcs</a>
-</li>
-<li>Dbcs()
-: <a class="el" href="classDbcs.html#adb748ec96ecbf15104c3c64ba35da74d">Dbcs</a>
-</li>
-<li>EnableLogging()
-: <a class="el" href="classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d">Dbcs</a>
-</li>
-<li>ReadFromDataBaseSync()
-: <a class="el" href="classDbcs.html#ad60b5925f2884555457d3a02d8e10150">Dbcs</a>
-</li>
+
+<p>Struct to forward key-value pairs to consumer.  
+ <a href="structKeyValuePair.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Dbcs_8hpp_source.html">Dbcs.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ac980b9ae3f20df1911c73b4cc5ac3bbe"><td class="memItemLeft" align="right" valign="top"><a id="ac980b9ae3f20df1911c73b4cc5ac3bbe"></a>
+rocksdb::Slice&#160;</td><td class="memItemRight" valign="bottom"><b>key</b></td></tr>
+<tr class="separator:ac980b9ae3f20df1911c73b4cc5ac3bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3348e83fbf66e16305b87828738492"><td class="memItemLeft" align="right" valign="top"><a id="abb3348e83fbf66e16305b87828738492"></a>
+rocksdb::Slice&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+<tr class="separator:abb3348e83fbf66e16305b87828738492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struct to forward key-value pairs to consumer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Key from key-value pair </td></tr>
+    <tr><td class="paramname">value</td><td>value from key-value pair </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/<a class="el" href="Dbcs_8hpp_source.html">Dbcs.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
