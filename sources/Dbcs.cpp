@@ -4,6 +4,13 @@
 
 #include "Dbcs.hpp"
 
+namespace logging = boost::log;
+namespace attrs = boost::log::attributes;
+namespace src = boost::log::sources;
+namespace sinks = boost::log::sinks;
+namespace expr = boost::log::expressions;
+namespace keywords = boost::log::keywords;
+
 // Dbcs::Dbcs() {
 //   _kDBPath = "../check.db";
 //   rocksdb::Options options;
@@ -22,7 +29,7 @@
 
 Dbcs::Dbcs(std::string &log_level, uint32_t &thread_count, std::string &output,
            std::string &input)
-    : _threadPool(thread_count) {
+    : _threadPool(thread_count), _logLevel(log_level) {
   rocksdb::Options option;
   option.create_if_missing = false;
   rocksdb::Status s = rocksdb::DB::Open(option, input, &_dbRead);
@@ -68,36 +75,73 @@ void Dbcs::AddNewKeyHashEntry(KeyValuePair &pair) {
   rocksdb::Status s;
   rocksdb::WriteOptions write_options;
   write_options.sync = false;
-//  std::cout << "Added task pair: " << pair.key.ToString()
-//            << " : Value: " << pair.value.ToString() << std::endl;
+
   s = _dbWrite->Put(write_options, pair.key,
                     picosha2::hash256_hex_string(pair.value.ToString()));
-  if (!s.ok())
-    std::cout << "error" << std::endl;
-  else
-    std::cout << "it's ok" << std::endl;
+  WriteLog(KeyValuePair{pair.key,
+                        picosha2::hash256_hex_string(pair.value.ToString())},
+           s.ok());
 }
-void Dbcs::EnableLogging()
-{
+
+void Dbcs::EnableLogging() {
   const std::string format = "%TimeStamp% <%Severity%> (%ThreadID%): %Message%";
-  boost::log::add_console_log(std::cout,
-                              boost::log::keywords::format = "[%TimeStamp%] [%Severity%] %Message%",
-                              boost::log::keywords::auto_flush = true,
-                              boost::log::keywords::filter = boost::log::trivial::severity
-                                              == boost::log::trivial::n  );
-
-  typedef boost::log::sinks::synchronous_sink<boost::log::sinks::text_file_backend> file_sink;
-  boost::shared_ptr<file_sink> sink(new file_sink(
-      boost::log::keywords::file_name = "./logs/file_%5N.log",
-      boost::log::keywords::rotation_size = 5 * 1024 * 1024,
-      boost::log::keywords::auto_flush = true));
-
-  sink->set_formatter(boost::log::expressions::stream
-                          << "["
-                          << boost::log::expressions::attr<boost::posix_time::ptime>("TimeStamp")
-                          << "] [" << boost::log::trivial::severity << "] "
-                          << boost::log::expressions::smessage);
-
-  boost::log::core::get()->add_sink(sink);
-  boost::log::add_common_attributes();
+  logging::add_console_log(
+      std::cout, keywords::format = "[%TimeStamp%] [%Severity%] %Message%",
+      keywords::auto_flush = true);
+  logging::add_common_attributes();
+}
+void Dbcs::WriteLog(KeyValuePair &&pair, bool &&success) {
+  if (_logLevel == "trace") {
+    if (success)
+      BOOST_LOG_TRIVIAL(trace)
+          << std ::endl
+          << "!Wrote pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+    else
+      BOOST_LOG_TRIVIAL(trace)
+          << std ::endl
+          << "!Error writing pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+  } else if (_logLevel == "error") {
+    if (success)
+      BOOST_LOG_TRIVIAL(error)
+          << std ::endl
+          << "!Wrote pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+    else
+      BOOST_LOG_TRIVIAL(error)
+          << std ::endl
+          << "!Error writing pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+  } else if (_logLevel == "info") {
+    if (success)
+      BOOST_LOG_TRIVIAL(info)
+          << std ::endl
+          << "!Wrote pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+    else
+      BOOST_LOG_TRIVIAL(info)
+          << std ::endl
+          << "!Error writing pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+  } else {
+    if (success)
+      BOOST_LOG_TRIVIAL(fatal)
+          << std ::endl
+          << "!Wrote pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+    else
+      BOOST_LOG_TRIVIAL(fatal)
+          << std ::endl
+          << "!Error writing pair [" << pair.key.ToString() << "] hash is ["
+          << picosha2::hash256_hex_string(pair.value.ToString()) << "]!"
+          << std::endl;
+  }
 }

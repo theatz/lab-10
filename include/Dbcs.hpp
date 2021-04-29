@@ -5,23 +5,22 @@
 #include <rocksdb/db.h>
 #include <rocksdb/options.h>
 #include <rocksdb/slice.h>
+
 #include <boost/log/common.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/sinks.hpp>
-#include <boost/log/sources/logger.hpp>
 #include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/log/sinks/text_file_backend.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-#include <boost/log/utility/setup/console.hpp>
+#include <boost/log/expressions.hpp>
 #include <boost/log/expressions/keyword.hpp>
-
-
+#include <boost/log/sinks.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/sources/logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/utility/setup/console.hpp>
 #include <ctime>
-#include <string>
 #include <iostream>
+#include <string>
 
 #include "PicoSHA.hpp"
 #include "ThreadPool.hpp"
@@ -44,7 +43,8 @@ struct KeyValuePair {
  * @brief Class to operate with existed ( created by time ) rocksdb DataBase
  * @class Dbcs
  *
- * @param log_level Log level to Boost_log
+ * @param log_level Log level to Boost_log; if log_level is unexpected it's set
+ * to fatal
  * @param thread_count Quantity of threads to operate with db
  * @param output Link to output db
  * @param input Link to input db
@@ -75,10 +75,18 @@ class Dbcs {
 
   void EnableLogging();
 
+  /**
+   * @brief void to log adding new key-value pairs
+   * @param pair key-value pair to write in new db
+   * @param success gives us info about Succeded/No wirting to new db
+   */
+  void WriteLog(KeyValuePair&& pair, bool&& success);
+
  private:
   ThreadPool _threadPool;
   rocksdb::DB* _dbRead;
   rocksdb::DB* _dbWrite;
+  std::string _logLevel;
   //  std::string _kDBPath;
 };
 

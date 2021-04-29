@@ -33,8 +33,8 @@ find_package(gflags CONFIG REQUIRED)
 hunter_add_package(rocksdb)
 find_package(RocksDB CONFIG REQUIRED)
 
-hunter_add_package(Boost COMPONENTS log system program_options)
-find_package(Boost CONFIG REQUIRED log log_setup system program_options)
+hunter_add_package(Boost COMPONENTS thread log system program_options)
+find_package(Boost CONFIG REQUIRED thread log log_setup system program_options)
 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
@@ -61,6 +61,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME}
         Boost::log_setup
         Boost::log
+        Boost::thread
         Boost::system
         RocksDB::rocksdb
         Boost::program_options
