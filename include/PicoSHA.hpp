@@ -7,15 +7,15 @@
 
 #ifndef PICOSHA2_BUFFER_SIZE_FOR_INPUT_ITERATOR
 #define PICOSHA2_BUFFER_SIZE_FOR_INPUT_ITERATOR \
-    1048576  //=1024*1024: default is 1MB memory
+  1048576  //=1024*1024: default is 1MB memory
 #endif
 
 #include <algorithm>
 #include <cassert>
+#include <fstream>
 #include <iterator>
 #include <sstream>
 #include <vector>
-#include <fstream>
 namespace picosha2 {
 typedef unsigned long word_t;
 typedef unsigned char byte_t;
@@ -81,8 +81,8 @@ void hash256_block(RaIter1 message_digest, RaIter2 first, RaIter2 last) {
            (static_cast<word_t>(mask_8bit(*(first + i * 4 + 3))));
   }
   for (std::size_t i = 16; i < 64; ++i) {
-    w[i] = mask_32bit(ssig1(w[i - 2]) + w[i - 7] + ssig0(w[i - 15]) +
-                      w[i - 16]);
+    w[i] =
+        mask_32bit(ssig1(w[i - 2]) + w[i - 7] + ssig0(w[i - 15]) + w[i - 16]);
   }
 
   word_t a = *message_digest;
@@ -176,8 +176,7 @@ class hash256_one_by_one {
     std::copy(first, last, std::back_inserter(buffer_));
     std::size_t i = 0;
     for (; i + 64 <= buffer_.size(); i += 64) {
-      detail::hash256_block(h_, buffer_.begin() + i,
-                            buffer_.begin() + i + 64);
+      detail::hash256_block(h_, buffer_.begin() + i, buffer_.begin() + i + 64);
     }
     buffer_.erase(buffer_.begin(), buffer_.begin() + i);
   }
@@ -205,8 +204,8 @@ class hash256_one_by_one {
   void get_hash_bytes(OutIter first, OutIter last) const {
     for (const word_t* iter = h_; iter != h_ + 8; ++iter) {
       for (std::size_t i = 0; i < 4 && first != last; ++i) {
-        *(first++) = detail::mask_8bit(
-            static_cast<byte_t>((*iter >> (24 - 8 * i))));
+        *(first++) =
+            detail::mask_8bit(static_cast<byte_t>((*iter >> (24 - 8 * i))));
       }
     }
   }
@@ -295,7 +294,7 @@ void hash256_impl(InputIter first, InputIter last, OutIter first2,
   hasher.finish();
   hasher.get_hash_bytes(first2, last2);
 }
-}
+}  // namespace impl
 
 template <typename InIter, typename OutIter>
 void hash256(InIter first, InIter last, OutIter first2, OutIter last2,
@@ -349,10 +348,11 @@ template <typename InContainer>
 std::string hash256_hex_string(const InContainer& src) {
   return hash256_hex_string(src.begin(), src.end());
 }
-template<typename OutIter>void hash256(std::ifstream& f, OutIter first, OutIter last){
-  hash256(std::istreambuf_iterator<char>(f), std::istreambuf_iterator<char>(), first,last);
-
+template <typename OutIter>
+void hash256(std::ifstream& f, OutIter first, OutIter last) {
+  hash256(std::istreambuf_iterator<char>(f), std::istreambuf_iterator<char>(),
+          first, last);
 }
-}// namespace picosha2
+}  // namespace picosha2
 
 #endif  // TEMPLATE_PICOSHA_HPP

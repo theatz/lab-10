@@ -1,3 +1,4 @@
+//"Copyright [year] <Copyright Owner>"
 //
 // Created by mrbgn on 4/21/21.
 //

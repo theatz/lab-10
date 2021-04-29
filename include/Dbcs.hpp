@@ -1,3 +1,4 @@
+//"Copyright [year] <Copyright Owner>"
 //
 // Created by mrbgn on 4/21/21.
 //
@@ -25,8 +26,8 @@
 #include "PicoSHA.hpp"
 #include "ThreadPool.hpp"
 
-#ifndef TEMPLATE_DBCS_HPP
-#define TEMPLATE_DBCS_HPP
+#ifndef INCLUDE_DBCS_HPP_
+#define INCLUDE_DBCS_HPP_
 
 /**
  * @brief Struct to forward key-value pairs to consumer
@@ -90,4 +91,4 @@ class Dbcs {
   //  std::string _kDBPath;
 };
 
-#endif  // TEMPLATE_DBCS_HPP
+#endif  // INCLUDE_DBCS_HPP_
