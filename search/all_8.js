@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['Лабораторная_20работа_20№_2010_9',['Лабораторная работа № 10',['../index.html',1,'']]]
+  ['writelog_9',['WriteLog',['../classDbcs.html#ada66f0181b91114797b3e382c1c1a057',1,'Dbcs']]]
 ];

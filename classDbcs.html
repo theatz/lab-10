@@ -93,12 +93,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbcs.html#a8922e778ffcfc9afc439cd9e6675fe7d">EnableLogging</a> ()</td></tr>
 <tr class="memdesc:a8922e778ffcfc9afc439cd9e6675fe7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">void to enable logging via Boost::Log <br /></td></tr>
 <tr class="separator:a8922e778ffcfc9afc439cd9e6675fe7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada66f0181b91114797b3e382c1c1a057"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDbcs.html#ada66f0181b91114797b3e382c1c1a057">WriteLog</a> (<a class="el" href="structKeyValuePair.html">KeyValuePair</a> &amp;&amp;pair, bool &amp;&amp;success)</td></tr>
+<tr class="memdesc:ada66f0181b91114797b3e382c1c1a057"><td class="mdescLeft">&#160;</td><td class="mdescRight">void to log adding new key-value pairs  <a href="classDbcs.html#ada66f0181b91114797b3e382c1c1a057">More...</a><br /></td></tr>
+<tr class="separator:ada66f0181b91114797b3e382c1c1a057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to operate with existed ( created by time ) rocksdb DataBase. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">log_level</td><td>Log level to Boost_log </td></tr>
+    <tr><td class="paramname">log_level</td><td>Log level to Boost_log; if log_level is unexpected it's set to fatal </td></tr>
     <tr><td class="paramname">thread_count</td><td>Quantity of threads to operate with db </td></tr>
     <tr><td class="paramname">output</td><td>Link to output db </td></tr>
     <tr><td class="paramname">input</td><td>Link to input db </td></tr>
@@ -193,6 +196,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>void to read from db in one threads </p>
 <p>iterative reading db in 1 thread and forwarding to multiple thread's consumer </p>
+
+</div>
+</div>
+<a id="ada66f0181b91114797b3e382c1c1a057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada66f0181b91114797b3e382c1c1a057">&#9670;&nbsp;</a></span>WriteLog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dbcs::WriteLog </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structKeyValuePair.html">KeyValuePair</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>pair</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&amp;&#160;</td>
+          <td class="paramname"><em>success</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>void to log adding new key-value pairs </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pair</td><td>key-value pair to write in new db </td></tr>
+    <tr><td class="paramname">success</td><td>gives us info about Succeded/No wirting to new db </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
